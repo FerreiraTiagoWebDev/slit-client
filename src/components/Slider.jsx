@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
@@ -10,7 +11,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-  ${mobile({display: "none"})}
+  ${mobile({ display: "none" })}
 `;
 
 const Arrow = styled.div`
@@ -92,6 +93,16 @@ const Slider = () => {
     }
   };
 
+  setTimeout(function () {
+    if (slideIndex === 0) {
+      setSlideIndex(1);
+    } else if (slideIndex === 1) {
+      setSlideIndex(2);
+    } else if (slideIndex === 2) {
+      setSlideIndex(0);
+    }
+  }, 4500);
+
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
@@ -106,7 +117,9 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
-              <Button>SHOW NOW</Button>
+              <Link to="/products/Jackets">
+                <Button>SHOW NOW</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://slit-shop.herokuapp.com/api/";
+const BASE_URL = "https://attach-cors.herokuapp.com/https://slit-shop.herokuapp.com/api/";
 // const TOKEN =
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";

@@ -22,8 +22,8 @@ const Products = ({ cat, filters, sort }) => {
           cat
             // ? `http://localhost:5000/api/products?category=${cat}`
             // : "http://localhost:5000/api/products"
-            ? `https://slit-shop.herokuapp.com/api/products?category=${cat}`
-            : "https://slit-shop.herokuapp.com/api/products"
+            ? `https://attach-cors.herokuapp.com/https://slit-shop.herokuapp.com/api/products?category=${cat}`
+            : "https://attach-cors.herokuapp.com/https://slit-shop.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {}
