@@ -82,11 +82,19 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   ${mobile({ width: "100%" })}
+  
 `;
 const AmountContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
+  svg{
+    cursor:pointer;
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+  
 `;
 
 const Amount = styled.span`
@@ -107,8 +115,11 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 500;
 
+  transition: 0.5s all ease;
   &:hover {
-    background-color: #f8f4f4;
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 11px -3px rgba(0,0,0,0.48); 
+box-shadow: 0px 10px 13px -7px #000000, 0px 0px 11px -3px rgba(0,0,0,0.48);
   }
 `;
 
@@ -132,7 +143,7 @@ const Product = () => {
   }, [id]);
 
   const handleQuantity = (type) => {
-    if (type === "dec") {
+    if (type === "dec" && quantity > 1) {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
       quantity < 10 && setQuantity(quantity + 1);

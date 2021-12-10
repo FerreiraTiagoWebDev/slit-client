@@ -22,27 +22,15 @@ const Products = ({ cat, filters, sort }) => {
           cat
             // ? `http://localhost:5000/api/products?category=${cat}`
             // : "http://localhost:5000/api/products"
-            ? `https://attach-cors.herokuapp.com/https://slit-shop.herokuapp.com/api/products?category=${cat}`
-            : "https://attach-cors.herokuapp.com/https://slit-shop.herokuapp.com/api/products"
+            ? `https://slit-shop.herokuapp.com/api/products?category=${cat}`
+            : "https://slit-shop.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {}
     };
     getProducts();
   }, [cat]);
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         cat
-  //           ? `http://localhost:5000/api/products?category=${cat}`
-  //           : "http://localhost:5000/api/products"
-  //       );
-  //       setProducts(res.data);
-  //     } catch (err) {}
-  //   };
-  //   getProducts();
-  // }, [cat]);
+
 
   useEffect(() => {
     cat &&

@@ -7,12 +7,17 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
+  transition: 0.5s all ease;
+  &:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  ${mobile({ height: "35vh" })}
+  ${mobile({ height: "35vh" })};
+ 
 `;
 const Info = styled.div`
   position: absolute;
@@ -24,6 +29,7 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 `;
 const Title = styled.h1`
   color: white;
@@ -36,6 +42,10 @@ const Button = styled.button`
   color: grey;
   cursor: pointer;
   font-weight: 600;
+  transition: 0.5s all ease;
+  &:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
 `;
 
 const CategoryItems = ({ item }) => {

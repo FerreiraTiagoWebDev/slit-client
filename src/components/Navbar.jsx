@@ -57,6 +57,17 @@ const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
   cursor: pointer;
+  transition: 0.5s all ease;
+  &:hover {
+    letter-spacing: 5px;
+    text-decoration: overline;
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 11px -3px rgba(0,0,0,0.48); 
+box-shadow: 0px 10px 13px -7px #000000, 0px 0px 11px -3px rgba(0,0,0,0.48);
+span{
+  display:none;
+}
+  }
 `;
 const Right = styled.div`
   flex: 1;
@@ -95,7 +106,7 @@ const Navbar = () => {
         </Left>
         <Center>
           <Link to="/">
-            <Logo>SLIT.</Logo>
+            <Logo> <span>S</span>LIT.</Logo>
           </Link>
         </Center>
         <Right>

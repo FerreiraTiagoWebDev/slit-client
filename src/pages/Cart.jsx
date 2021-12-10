@@ -5,6 +5,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { removeProduct, clearResults } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Container = styled.div``;
 
@@ -138,6 +142,31 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const quantity = useSelector((state) => state.cart.quantity);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
+
+  const handleQuantity = () => {
+    if (quantity > 1) {
+      return quantity - 1;
+    } else {
+      return quantity + 1;
+    }
+  };
+
+  const handleClick = () => {
+   
+      dispatch(removeProduct({ ...product, quantity, color, size }));
+    
+  };
+  const handleClearResults = () => {
+    dispatch(clearResults({ ...product, quantity, color, size }));
+  };
+
+  console.log(cart);
+  console.log(quantity);
 
   return (
     <Container>
@@ -146,17 +175,19 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <Link to="/products/Jackets">
+            <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
-            <TopText>Shopping Bag (2)</TopText>{" "}
+            <TopText>Shopping Bag ({quantity})</TopText>{" "}
             <TopText>Your WishList (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECK OUT NOW</TopButton>
+          <TopButton type="filled" onClick={() => handleClearResults()}>CHECK OUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product>
+              <Product key={product.indexOf}>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -176,9 +207,14 @@ const Cart = () => {
                   <ProductAmountContainer>
                     <Add />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove />
+                    <Remove
+                      onClick={() => handleClick()}
+                      style={{ cursor: "pointer" }}
+                    />
                   </ProductAmountContainer>
-                  <ProductPrice>{product.price*product.quantity}€ </ProductPrice>
+                  <ProductPrice>
+                    {product.price * product.quantity}€{" "}
+                  </ProductPrice>
                 </PriceDetail>
               </Product>
             ))}
